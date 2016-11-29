@@ -29,6 +29,7 @@ describe(Tamagotchi) do
     it("decreases the amount of food the Tamagotchi has left by 1") do
       new_monster = Tamagotchi.new("Zebraxas")
       new_monster.time_passes()
+      new_monster.set_last_ate(Time.now.to_i()+30)
       expect(new_monster.food_level).to(eq(9))
     end
   end
@@ -43,6 +44,7 @@ describe(Tamagotchi) do
   describe('#feed') do
     it('adds food to the tamagotchi food level') do
       new_monster = Tamagotchi.new("Zebraxas")
+      new_monster.set_last_ate(Time.now.to_i()+30)
       expect(new_monster.feed(2)).to(eq(12))
     end
   end
@@ -60,5 +62,14 @@ describe(Tamagotchi) do
       expect(new_monster.play(2)).to(eq(12))
     end
   end
+
+  describe('#feed') do
+    it('attempts to add food to the tamagotchi food level and fails') do
+      new_monster = Tamagotchi.new("Zebraxas")
+      new_monster.set_last_ate(Time.now.to_i()+1)
+      expect(new_monster.feed(2)).to(eq("Not hungry"))
+    end
+  end
+
 
 end
