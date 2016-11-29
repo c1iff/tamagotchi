@@ -73,5 +73,20 @@ describe(Tamagotchi) do
     end
   end
 
+  describe('.all') do
+    it('displays an empty array for now') do
+      expect(Tamagotchi.all).to(eq([]))
+    end
+  end
+
+  describe('#save') do
+    it('pushes current monster to an array') do
+      new_monster = Tamagotchi.new("Zebraxas")
+      new_monster.save
+      new_monster2 = Tamagotchi.new("Abraxas")
+      new_monster2.save
+      expect(Tamagotchi.all).to(eq([new_monster, new_monster2]))
+    end
+  end
 
 end
