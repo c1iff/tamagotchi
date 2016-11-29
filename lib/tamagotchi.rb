@@ -43,13 +43,26 @@ class Tamagotchi
   define_method(:time_passes) do
     @age = Time.new() - @birthday
     while @age > 0
-      @food_level = @food_level - 1
-      @age = @age - 10000
+      @food_level -= 1
+      @sleep_level -= 1
+      @activity_level -= 1
+
+      @age -= 10000
+
     end
+
   end
 
   define_method(:feed) do |food|
     @food_level += food
+  end
+
+  define_method(:sleep) do |amount|
+    @sleep_level += amount
+  end
+
+  define_method(:play) do |amount|
+    @activity_level += amount
   end
 
 

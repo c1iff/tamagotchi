@@ -47,4 +47,18 @@ describe(Tamagotchi) do
     end
   end
 
+  describe('#sleep') do
+    it('adds sleep to the tamagotchi sleep level') do
+      new_monster = Tamagotchi.new("Zebraxas")
+      expect(new_monster.sleep(2)).to(eq(12))
+    end
+  end
+
+  describe('#play') do
+    it('adds play to the tamagotchi activity level') do
+      new_monster = Tamagotchi.new("Zebraxas")
+      expect(new_monster.play(2)).to(eq(12))
+    end
+  end
+
 end
