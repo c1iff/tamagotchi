@@ -89,4 +89,11 @@ describe(Tamagotchi) do
     end
   end
 
+  describe('.clear') do
+    it('clears the all array') do
+      Tamagotchi.clear
+      expect(Tamagotchi.all).to(eq([]))
+    end
+  end
+
 end
