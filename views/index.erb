@@ -1,4 +1,8 @@
-<%= @current_monster %>
+<ul>
+  <% @monsters.each() do |monster| %>
+  <li><a href="/monster/<%= monster.name() %>"><%= monster.name() %></a></li>
+  <% end %>
+</ul>
 
 <form action="create_monster">
   <label for="new_monster">Enter in the name of your new monster</label>

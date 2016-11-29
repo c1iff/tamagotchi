@@ -5,11 +5,12 @@ class Tamagotchi
     @food_level = 10
     @sleep_level = 10
     @activity_level = 10
-    @birthday = Time.now.to_i() - 0.001
+    @birthday = Time.now.to_i() - 1
     @age = 0
     @last_ate = Time.now.to_i()
     @last_slept = Time.now.to_i()
     @last_played = Time.now.to_i()
+    @time_passed = 0
   end
 
   define_method(:name) do
@@ -45,12 +46,12 @@ class Tamagotchi
   end
 
   define_method(:time_passes) do
-    @age = Time.now.to_i() - @birthday
-    while @age > 0
+    self.age()
+    while @age - @time_passed >= 0
       @food_level -= 1
       @sleep_level -= 1
       @activity_level -= 1
-      @age -= 10
+      @time_passed += 10
     end
 
   end
@@ -127,6 +128,5 @@ class Tamagotchi
   define_method(:set_last_slept) do |time|
     @last_slept = time
   end
-
 
 end

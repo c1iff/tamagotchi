@@ -29,7 +29,6 @@ describe(Tamagotchi) do
     it("decreases the amount of food the Tamagotchi has left by 1") do
       new_monster = Tamagotchi.new("Zebraxas")
       new_monster.time_passes()
-      new_monster.set_last_ate(Time.now.to_i()+30)
       expect(new_monster.food_level).to(eq(9))
     end
   end

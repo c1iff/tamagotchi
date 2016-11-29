@@ -1,1 +1,12 @@
-<h1> </h1>
+<h1>Your monster's stats</h1>
+
+<%if @monster_to_view.is_alive%>
+<% @monster_to_view.time_passes %>
+  <h3>Name: <%= @monster_to_view.name %></h3>
+  <h3>Age (in seconds): <%= @monster_to_view.age %></h3>
+  <h3>Food Level: <%= @monster_to_view.food_level %></h3>
+  <h3>Sleep Level: <%= @monster_to_view.sleep_level %></h3>
+  <h3>Activity Level: <%= @monster_to_view.activity_level %></h3>
+<%else%>
+  <h3>Sorry your Tamagotchi has died</h3>
+<%end%>
