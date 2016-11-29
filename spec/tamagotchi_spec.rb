@@ -44,7 +44,7 @@ describe(Tamagotchi) do
   describe('#feed') do
     it('adds food to the tamagotchi food level') do
       new_monster = Tamagotchi.new("Zebraxas")
-      new_monster.set_last_ate(Time.now.to_i()+30)
+      new_monster.set_last_ate(Time.now.to_i()-30)
       expect(new_monster.feed(2)).to(eq(12))
     end
   end
@@ -52,6 +52,7 @@ describe(Tamagotchi) do
   describe('#sleep') do
     it('adds sleep to the tamagotchi sleep level') do
       new_monster = Tamagotchi.new("Zebraxas")
+      new_monster.set_last_slept(Time.now.to_i()-30)
       expect(new_monster.sleep(2)).to(eq(12))
     end
   end
@@ -59,6 +60,7 @@ describe(Tamagotchi) do
   describe('#play') do
     it('adds play to the tamagotchi activity level') do
       new_monster = Tamagotchi.new("Zebraxas")
+      new_monster.set_last_played(Time.now.to_i()-30)
       expect(new_monster.play(2)).to(eq(12))
     end
   end

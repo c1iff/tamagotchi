@@ -4,7 +4,7 @@ class Tamagotchi
     @food_level = 10
     @sleep_level = 10
     @activity_level = 10
-    @birthday = Time.now.to_i()
+    @birthday = Time.now.to_i() - 0.001
     @age = 0
     @last_ate = Time.now.to_i()
     @last_slept = Time.now.to_i()
@@ -17,10 +17,6 @@ class Tamagotchi
 
   define_method(:food_level) do
     @food_level
-  end
-
-  define_method(:set_last_ate) do |time|
-    @last_ate = time
   end
 
   define_method(:sleep_level) do
@@ -44,11 +40,11 @@ class Tamagotchi
   end
 
   define_method(:age) do
-    @age = Time.now.to_i() + 0.01 - @birthday
+    @age = Time.now.to_i() -  @birthday
   end
 
   define_method(:time_passes) do
-    @age = Time.now.to_i() + 0.01 - @birthday
+    @age = Time.now.to_i() - @birthday
     while @age > 0
       @food_level -= 1
       @sleep_level -= 1
@@ -59,7 +55,7 @@ class Tamagotchi
   end
 
   define_method(:feed) do |food|
-    if @last_ate - Time.now.to_i() > 20
+    if Time.now.to_i() - @last_ate > 20
       if food <= 3
         @last_ate = Time.now().to_i()
         @food_level += food
@@ -75,23 +71,49 @@ class Tamagotchi
   end
 
   define_method(:sleep) do |amount|
-    if amount <= 3
-      @sleep_level += amount
-    elsif
-      @sleep_level += 3
-      "I'm wide awake!"
+    if Time.now.to_i() - @last_slept > 20
+      if amount <= 3
+        @last_slept = Time.now().to_i()
+        @sleep_level += amount
+      elsif
+        @last_slept = Time.now().to_i()
+        @sleep_level += 3
+        "I'm wide awake!"
+      end
+      @sleep_level
+    else
+      "Not tired"
     end
   end
 
   define_method(:play) do |amount|
-    if amount <= 3
-      @activity_level += amount
-    elsif
-      @activity_level += 3
+    if Time.now.to_i() - @last_played > 20
+      if amount <= 3
+        @last_played = Time.now.to_i()
+        @activity_level += amount
+      elsif
+        @last_played = Time.now.to_i()
+        @activity_level += 3
+      end
+      @activity_level
+    else
       "That was fun!"
     end
   end
 
+#The following methods are used to test functionality in rspec
+
+  define_method(:set_last_ate) do |time|
+    @last_ate = time
+  end
+
+  define_method(:set_last_played) do |time|
+    @last_played = time
+  end
+
+  define_method(:set_last_slept) do |time|
+    @last_slept = time
+  end
 
 
 end
