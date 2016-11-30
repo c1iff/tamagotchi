@@ -57,7 +57,9 @@ class Tamagotchi
   end
 
   define_method(:feed) do |food|
+    print "here"
     if Time.now.to_i() - @last_ate > 20
+
       if food <= 3
         @last_ate = Time.now().to_i()
         @food_level += food

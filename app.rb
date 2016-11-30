@@ -4,7 +4,6 @@ require('./lib/tamagotchi')
 also_reload('lib/**/*.rb')
 
 get('/') do
-  Tamagotchi.clear()
   @monsters = Tamagotchi.all
   erb(:index)
 end
@@ -17,13 +16,33 @@ get('/create_monster') do
    erb(:index)
 end
 
-get ('/monster/:doggy') do
+get('/monster/:doggy') do
   @monsters = Tamagotchi.all
   @monsters.each() do |monster|
 
     if monster.name == params.fetch('doggy')
-      @monster_to_view = monster
+      @@monster_to_view = monster
     end
   end
+  erb(:output)
+end
+
+get('/clear') do
+  @monsters = Tamagotchi.clear()
+  erb(:index)
+end
+
+get('/feed_monster') do
+  @@monster_to_view.feed((params.fetch("feed_monster").to_i)
+  erb(:output)
+end
+
+get('/play') do
+  @@monster_to_view.play(params.fetch("play_monster").to_i)
+  erb(:output)
+end
+
+get('/sleep') do
+  @@monster_to_view.sleep(params.fetch("sleep_monster").to_i)
   erb(:output)
 end

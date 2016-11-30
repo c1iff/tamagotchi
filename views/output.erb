@@ -1,12 +1,61 @@
 <h1>Your monster's stats</h1>
-
-<%if @monster_to_view.is_alive%>
-<% @monster_to_view.time_passes %>
-  <h3>Name: <%= @monster_to_view.name %></h3>
-  <h3>Age (in seconds): <%= @monster_to_view.age %></h3>
-  <h3>Food Level: <%= @monster_to_view.food_level %></h3>
-  <h3>Sleep Level: <%= @monster_to_view.sleep_level %></h3>
-  <h3>Activity Level: <%= @monster_to_view.activity_level %></h3>
+<% @test %>
+<%if @@monster_to_view.is_alive%>
+<% @@monster_to_view.time_passes %>
+  <h3>Name: <%= @@monster_to_view.name %></h3>
+  <h3>Age (in seconds): <%= @@monster_to_view.age %></h3>
+  <h3>Food Level: <%= @@monster_to_view.food_level %></h3>
+  <h3>Sleep Level: <%= @@monster_to_view.sleep_level %></h3>
+  <h3>Activity Level: <%= @@monster_to_view.activity_level %></h3>
 <%else%>
   <h3>Sorry your Tamagotchi has died</h3>
 <%end%>
+
+<a href="/"><button type="button" name="return">Go back</button></a>
+<br>
+<br>
+
+<form action="feed_monster">
+  <label for="feed_monster">Enter the amount of food</label>
+  <input type="text" name="feed_monster" id="feed_monster">
+  <br>
+  <button type="submit" class="btn btn-success">Create!</button>
+</form>
+
+<!-- <form method="post" action="feed">
+  <select class="form-control" name="feedit">
+    <option value="1">snack</option>
+    <option value="2">appetizer</option>
+    <option value="3">meal</option>
+    <option value="4">feast</option>
+  </select>
+  <br>
+  <button name="feed_it" class="btn btn-primary">feed</button>
+</form> -->
+<br>
+<form action="play">
+  <!-- <select class="form-control" name="play">
+    <option value="1">rock paper scissors</option>
+    <option value="2">hop scotch</option>
+    <option value="3">baseball</option>
+    <option value="4">marathon</option>
+  </select>
+  <br> -->
+  <label for="play_monster">Enter the amount of play</label>
+  <input type="text" name="play_monster" id="play_monster">
+  <br>
+  <button name="play" class="btn btn-success">Play</button>
+</form>
+<br>
+<form action="sleep">
+  <!-- <select class="form-control" name="sleep">
+    <option value="1">rest</option>
+    <option value="2">nap</option>
+    <option value="3">sleep</option>
+    <option value="4">deep sleep</option>
+  </select> -->
+  <label for="sleep_monster">Enter the amount of sleep</label>
+  <input type="text" name="sleep_monster" id="sleep_monster">
+  <br>
+  <button name="sleep" class="btn btn-success">Sleep</button>
+</form>
